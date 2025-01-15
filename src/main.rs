@@ -1,21 +1,33 @@
 use std::io;
 
 fn main() {
-    println!("Welcome to the rust calculator");
-    
-    let mut input = String::new(); //creating a mutable string to hold user input
+    println!("Welcome to the Rust calculator!");
 
-    
-    io::stdin() //Read user input
+    // Prompt and read the first number
+    println!("Enter the first number:");
+    let first_num = get_number_from_user();
+
+    // Prompt and read the second number
+    println!("Enter the second number:");
+    let second_num = get_number_from_user();
+
+    // Display the numbers entered
+    println!("First number entered: {}", first_num);
+    println!("Second number entered: {}", second_num);
+}
+
+// Function to trim and parse user input into a number
+fn get_number_from_user() -> f64 {
+    let mut input = String::new(); // Create a mutable string to hold user input
+
+    // Read user input
+    io::stdin()
         .read_line(&mut input)
-        .expect("Could read input try agian");
+        .expect("Failed to read input");
 
-    let input: f64 = input //convert input into a number (f64)
-        .trim() //remove trailign whitespace
-        .parse() //Attempt to convert the string to a floating point number
-        .expect("Invaild number");
-    
-    println!("You entered the number: {}", input);
-
-
+    // Trim and parse the input into a number
+    input
+        .trim() // Remove trailing whitespace
+        .parse() // Attempt to parse the string into a floating-point number
+        .expect("Invalid number")
 }
